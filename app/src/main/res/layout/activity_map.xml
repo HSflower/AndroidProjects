@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main">
+
+    <Button
+        android:text="map"
+        android:layout_width="33dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:onClick="noChange"
+        android:id="@+id/button1" />
+    <Button
+        android:layout_marginTop="80dp"
+        android:text="path1"
+        android:layout_width="33dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:onClick="pathChange1"
+        android:id="@+id/button2" />
+    <Button
+        android:layout_marginTop="200dp"
+        android:text="path2"
+        android:layout_width="33dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:onClick="pathChange2"
+        android:id="@+id/button3" />
+
+    <Button
+        android:layout_marginTop="320dp"
+        android:text="findPath"
+        android:layout_width="33dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:onClick="pathChange3"
+        android:id="@+id/button4" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        tools:context="com.ourincheon.blestart.plusmap">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/picture"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/imageView" />
+    </RelativeLayout>
+    <ListView
+        android:visibility="invisible"
+        android:id="@+id/locationE"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="356dp" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/path1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        tools:context="com.ourincheon.blestart.plusmap">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/picturepath1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/pathi1" />
+    </RelativeLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/path2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        tools:context="com.ourincheon.blestart.plusmap">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/picturepath2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/pathi2" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/location1"
+        android:foregroundGravity="center"
+        android:visibility="visible"
+        android:onClick="oneP"
+        app:srcCompat="@android:drawable/presence_invisible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/location2"
+        android:foregroundGravity="center"
+        android:visibility="visible"
+        android:onClick="twoP"
+        app:srcCompat="@android:drawable/presence_invisible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/location3"
+        android:foregroundGravity="center"
+        android:visibility="visible"
+        android:onClick="threeP"
+        app:srcCompat="@android:drawable/presence_invisible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/location"
+        android:foregroundGravity="center"
+        android:visibility="visible"
+        app:srcCompat="@android:drawable/presence_online"
+        tools:ignore="ContentDescription" />
+    </FrameLayout>
