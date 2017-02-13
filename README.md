@@ -1,7 +1,7 @@
 # projectLOUVRE
 - beacon auto guide
 
-2017.02.13
+2017.2.13.
 
 - 로그인 에러 제외하고 코드 합체 완료! 
 
@@ -16,3 +16,9 @@
 <한슬>
 - 페이지 별 정보 출력 하기(앱, 웹)
 - 로그인 기능 디버깅
+
+1. branch, pull request 방법 설명 
+: http://www.slideshare.net/jungseobshin/github-pull-request
+
+2. 마크다운 사용법
+: https://gist.github.com/ihoneymon/652be052a0727ad59601
