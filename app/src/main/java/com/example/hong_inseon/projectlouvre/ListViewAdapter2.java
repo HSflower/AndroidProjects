@@ -12,18 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ListViewAdapter extends BaseAdapter {
+public class ListViewAdapter2 extends BaseAdapter {
     Context mContext;
     LayoutInflater inflater;
-    private List<Museum> worldmuseumlist = null;
-    private ArrayList<Museum> arraylist;
+    private List<Exhibition> worldexhibitionlist = null;
+    private ArrayList<Exhibition> arraylist2;
 
-    public ListViewAdapter(Context context, List<Museum> worldmuseumlist) {
+    public ListViewAdapter2(Context context, List<Exhibition> worldexhibitionlist) {
         mContext = context;
-        this.worldmuseumlist = worldmuseumlist;
+        this.worldexhibitionlist = worldexhibitionlist;
         inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<Museum>();
-        this.arraylist.addAll(worldmuseumlist);
+        this.arraylist2 = new ArrayList<Exhibition>();
+        this.arraylist2.addAll(worldexhibitionlist);
     }
 
     public class ViewHolder {
@@ -32,12 +32,12 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return worldmuseumlist.size();
+        return worldexhibitionlist.size();
     }
 
     @Override
-    public Museum getItem(int position) {
-        return worldmuseumlist.get(position);
+    public Exhibition getItem(int position) {
+        return worldexhibitionlist.get(position);
     }
 
     @Override
@@ -49,21 +49,20 @@ public class ListViewAdapter extends BaseAdapter {
         final ViewHolder holder;
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.listview_item, null);
-            holder.name = (TextView) view.findViewById(R.id.name);
+            view = inflater.inflate(R.layout.listview_item2, null);
+            holder.name = (TextView) view.findViewById(R.id.name2);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.name.setText(worldmuseumlist.get(position).getName());
+        holder.name.setText(worldexhibitionlist.get(position).getName());
 
         view.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(mContext, SingleItemView.class);
-                intent.putExtra("name",(worldmuseumlist.get(position).getName()));
+                intent.putExtra("name",(worldexhibitionlist.get(position).getName()));
                 mContext.startActivity(intent);
             }
         });
@@ -71,23 +70,22 @@ public class ListViewAdapter extends BaseAdapter {
         return view;
     }
 
-    // Filter Class
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
-        worldmuseumlist.clear();
+        worldexhibitionlist.clear();
         if (charText.length() == 0) {
-            worldmuseumlist.addAll(arraylist);
+            worldexhibitionlist.addAll(arraylist2);
         }
         else
         {
-            for (Museum wp : arraylist)
+            for (Exhibition wp : arraylist2)
             {
                 if (wp.getName().toLowerCase(Locale.getDefault()).contains(charText))
                 {
-                    worldmuseumlist.add(wp);
+                    worldexhibitionlist.add(wp);
                 }
             }
         }
-        //notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 }

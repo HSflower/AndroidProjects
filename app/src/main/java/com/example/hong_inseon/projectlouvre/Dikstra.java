@@ -5,7 +5,7 @@ import java.util.Stack;
 public class Dikstra {
     static int inf = 99999999;
 
-    
+
     public static int[] dikstra(int[][] graph, int start, int end) {
         int vCount = graph[0].length; // 정점의 수
         boolean[] isVisits = new boolean[vCount]; // 방문 배열
