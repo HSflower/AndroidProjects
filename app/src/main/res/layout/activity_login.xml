@@ -39,7 +39,8 @@
             android:text="Sign up"
             android:textAllCaps="false"
             android:layout_alignTop="@+id/loginBtn"
-            android:layout_alignEnd="@+id/passwordInput" />
+            android:layout_alignEnd="@+id/passwordInput"
+            android:onClick="join_btn"/>
 
         <Button
             android:id="@+id/loginBtn"
@@ -49,7 +50,8 @@
             android:textAllCaps="false"
             android:layout_marginTop="41dp"
             android:layout_below="@+id/passwordInput"
-            android:layout_toStartOf="@+id/signupBtn" />
+            android:layout_toStartOf="@+id/signupBtn"
+            android:onClick="login_btn"/>
 
         <CheckBox
             android:text="autoLogin"

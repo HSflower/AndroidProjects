@@ -21,7 +21,8 @@ public class JoinActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_join1);
+        setContentView(R.layout.activity_join);
+
         etEmail = (EditText) findViewById(R.id.emailinput);
         etPassword = (EditText) findViewById(R.id.pwinput);
         etPasswordConfirm = (EditText) findViewById(R.id.pwconfirm);
