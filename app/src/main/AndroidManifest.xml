@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.example.hong_inseon.projectlouvre"
           xmlns:android="http://schemas.android.com/apk/res/android">
+
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -41,16 +41,16 @@
         </activity>
         <activity android:name=".TabFavoGalleryActivity">
         </activity>
-        <activity android:name=".GalleryInfoActivity">
-        </activity>
-        <activity android:name=".popup1" />
-        <activity android:name=".popup2" />
-        <activity android:name=".popup3" />
+        <activity android:name=".popup1"/>
+        <activity android:name=".popup2"/>
+        <activity android:name=".popup3"/>
         <activity android:name=".ListviewItem">
         </activity>
         <activity android:name=".JoinActivity">
         </activity>
         <activity android:name=".MapActivity">
+        </activity>
+        <activity android:name=".MuseumInfoActivity">
         </activity>
     </application>
 

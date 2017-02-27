@@ -12,10 +12,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.hong_inseon.projectlouvre.ListActivity">
 
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ListView"/>
+        android:id="@+id/mList"/>
 
 </RelativeLayout>

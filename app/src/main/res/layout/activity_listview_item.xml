@@ -17,20 +17,38 @@
 
         <ImageView
             android:layout_width="match_parent"
-            app:srcCompat="@drawable/louvre"
-            android:id="@+id/imageView2"
             android:layout_height="150dp"
-            android:layout_weight="1"/>
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/louvre"
+            android:id="@+id/mPhoto"
+            android:layout_weight="1"
+            />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/mSubject"
             android:layout_weight="0.66"
             android:textStyle="normal|bold"
             android:textColor="@android:color/background_light"
-            android:layout_alignBottom="@+id/imageView2"
-            android:layout_centerHorizontal="true"/>
+            android:layout_alignBottom="@+id/mPhoto"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:background="#95585858"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:id="@+id/mProcess"
+            android:layout_marginTop="23dp"
+            android:layout_alignTop="@+id/mPhoto"
+            android:layout_alignParentStart="true"
+            android:background="#95585858"
+            android:textColor="@android:color/background_light"
+            android:textSize="12sp"
+            android:textAlignment="center"/>
 
 
 </RelativeLayout>
