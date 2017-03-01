@@ -1,24 +1,25 @@
 package com.example.hong_inseon.projectlouvre;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ListViewAdapter extends BaseAdapter {
+public class ListViewAdapterMuseum extends BaseAdapter {
     Context mContext;
     LayoutInflater inflater;
     private List<Museum> worldmuseumlist = null;
     private ArrayList<Museum> arraylist;
 
-    public ListViewAdapter(Context context, List<Museum> worldmuseumlist) {
+    public ListViewAdapterMuseum(Context context, List<Museum> worldmuseumlist) {
         mContext = context;
         this.worldmuseumlist = worldmuseumlist;
         inflater = LayoutInflater.from(mContext);
@@ -27,7 +28,9 @@ public class ListViewAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView name;
+        public TextView nameM, nameA;
+        public RatingBar rating;
+        public ImageView Image;
     }
 
     @Override
@@ -49,16 +52,22 @@ public class ListViewAdapter extends BaseAdapter {
         final ViewHolder holder;
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.listview_item, null);
-            holder.name = (TextView) view.findViewById(R.id.name);
+            view = inflater.inflate(R.layout.museumviewholder, null);
+            holder.nameM = (TextView) view.findViewById(R.id.textMname2);
+            holder.nameA = (TextView) view.findViewById(R.id.textAname);
+            holder.rating = (RatingBar)view.findViewById(R.id.textRname);
+            holder.Image = (ImageView)view.findViewById(R.id.imageMuseum);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.name.setText(worldmuseumlist.get(position).getName());
+        holder.nameM.setText(worldmuseumlist.get(position).getNameM());
+        holder.nameA.setText(worldmuseumlist.get(position).getNameA());
+        holder.rating.setRating(worldmuseumlist.get(position).getNameR());
+        holder.Image.setImageResource(worldmuseumlist.get(position).getImage());
 
-        view.setOnClickListener(new View.OnClickListener() {
+        /*view.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -66,7 +75,7 @@ public class ListViewAdapter extends BaseAdapter {
                 intent.putExtra("name",(worldmuseumlist.get(position).getName()));
                 mContext.startActivity(intent);
             }
-        });
+        });*/
 
         return view;
     }
@@ -82,7 +91,7 @@ public class ListViewAdapter extends BaseAdapter {
         {
             for (Museum wp : arraylist)
             {
-                if (wp.getName().toLowerCase(Locale.getDefault()).contains(charText))
+                if (wp.getNameM().toLowerCase(Locale.getDefault()).contains(charText))
                 {
                     worldmuseumlist.add(wp);
                 }

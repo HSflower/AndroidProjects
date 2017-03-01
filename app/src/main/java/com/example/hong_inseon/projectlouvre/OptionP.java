@@ -1,8 +1,8 @@
 package com.example.hong_inseon.projectlouvre;
 
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,11 +20,12 @@ import static android.view.View.VISIBLE;
 
 public class OptionP extends AppCompatActivity {
     ListView list, list2;
-    ListViewAdapter adapter;
-    ListViewAdapter2 adapter2;
+    ListViewAdapterMuseum adapter;
+    ListViewAdapterExhibition adapter2;
     EditText editsearch;
     TextView t,t1,t2;
-    String[] name, name2;
+    int[] Image, rating, Image2;
+    String[] name4, name2, name1, name3, name5;
     ArrayList<Museum> arraylist = new ArrayList<Museum>();
     ArrayList<Exhibition> arraylist2 = new ArrayList<Exhibition>();
 
@@ -39,13 +40,27 @@ public class OptionP extends AppCompatActivity {
         //getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.yourimage));
         //위에는 이미지를 넣고 싶을때 사용
 
-        name = new String[] { "China", "India", "United States",
+        name1 = new String[] { "China", "India", "United States",
                 "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh",
-                "Russia", "Japan", "Qwerty", "Asdfghjk", "Zxcvbn", "Qsxwdvf" };
+                "Russia", "Japan"};
+        rating = new int[] { 4, 3, 5, 2, 4, 3, 4, 5, 1, 5};
+        name2 = new String[] { "경기도 부천시 원미구", "서울특별시 강남구", "인천광역시 남동구 백범로 124번길",
+                "강원도 홍천시", "인천광역시 연수구 옥련동", "부산광역시 어딘가", "미국 Los Angelous 인지 어딘지 모름"
+                , "우주 안드로메다","이세상 어딘가에 있을거라고 믿는곳", "도서관 4층 일반자료실 노트북코너"};
+        Image = new int[] {R.drawable.no,R.drawable.cart,R.drawable.heart,R.drawable.louvre,R.drawable.profile,
+                R.drawable.mypage,R.drawable.temple,R.drawable.search,R.drawable.cart,R.drawable.profile};
 
-        name2 = new String[] {"Egypt Treasure", "Alphons Muha", "Hundaert Muha",
-                "Mordern Architect", "Fornasetti Pract", "lnuar's Lady","Youth", "Look Smithsonian",
-                "Magic Forest", "kid's Plex", " Meeting with Toy in the World", "Ansan Colorful Plant"};
+        name3 = new String[] { "China", "India", "United States",
+                "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh",
+                "Russia", "Japan"};
+        name4 = new String[] { "Beijing", "New Delhi", "Washington D.C.",
+                "Jakarta", "Brazilia", "Islamabad", "Abuja", "Dacca",
+                "Moskva", "Tokyo"};
+        name5 = new String[] { "2017.02.28~2017.07.21", "2017.02.27~2017.07.21", "2017.02.28~2017.07.21",
+                "2017.02.26~2017.07.21", "2017.02.25~2017.07.21", "2017.02.24~2017.07.21", "2017.02.23~2017.07.21"
+                , "2017.02.22~2017.07.21","2017.02.21~2017.07.21", "2017.02.20~2017.07.21"};
+        Image2 = new int[] {R.drawable.no,R.drawable.cart,R.drawable.heart,R.drawable.louvre,R.drawable.profile,
+                R.drawable.mypage,R.drawable.temple,R.drawable.search,R.drawable.cart,R.drawable.profile};
 
         list = (ListView) findViewById(R.id.listview);
         list2 = (ListView)findViewById(R.id.listview2);
@@ -53,19 +68,19 @@ public class OptionP extends AppCompatActivity {
         t1 = (TextView)findViewById(R.id.textMuseum);
         t2 = (TextView)findViewById(R.id.textExhibition);
 
-        for (int i = 0; i < name.length; i++)
+        for (int i = 0; i < name1.length; i++)
         {
-            Museum wp = new Museum(name[i]);
+            Museum wp = new Museum(name1[i], rating[i], name2[i], Image[i]);
             arraylist.add(wp);
         }
 
         for (int i = 0; i < name2.length; i++) {
-            Exhibition wp2 = new Exhibition(name2[i]);
+            Exhibition wp2 = new Exhibition(name3[i], name4[i], name5[i], Image2[i]);
             arraylist2.add(wp2);
         }
 
-        adapter = new ListViewAdapter(this, arraylist);
-        adapter2 = new ListViewAdapter2(this, arraylist2);
+        adapter = new ListViewAdapterMuseum(this, arraylist);
+        adapter2 = new ListViewAdapterExhibition(this, arraylist2);
 
         list.setAdapter(adapter);
         list2.setAdapter(adapter2);

@@ -22,7 +22,7 @@ public class ExhibitionInfoActivity extends Activity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exhibition_info);
+        setContentView(R.layout.activity_exhibition_info_drawer);
 
         WebView webView = (WebView)findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewClient());

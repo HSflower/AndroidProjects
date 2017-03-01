@@ -5,21 +5,11 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
-    <FrameLayout  xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
 
     <include
-        layout="@layout/activity_exhibition_info"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent"/>
+        layout="@layout/activity_exhibition_info" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
