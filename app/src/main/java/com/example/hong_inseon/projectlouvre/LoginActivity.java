@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnRegist; //sign up button
     private Button loginBtn; //Log in button
     CheckBox autoLogin;
-    SharedPreferences pref = getSharedPreferences("Game", Activity.MODE_PRIVATE);
+    SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editor;
     Boolean loginChecked;
 
