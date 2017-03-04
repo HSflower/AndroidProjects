@@ -13,14 +13,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     public void onClickMap(View view) {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
     }
 
     public void onClick(View view) {
-        Intent intent = new Intent(this, ExhibitionInfoDrawer.class);
+        Intent intent = new Intent(this, ExhibitionInfoActivity.class);
         startActivity(intent);
     }
 

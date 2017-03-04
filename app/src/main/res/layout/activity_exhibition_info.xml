@@ -76,11 +76,11 @@
             android:layout_height="50dp">
 
             <Button
-                android:text="구매"
+                android:text="*"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonBuy"
-                android:layout_weight="1"/>
+                />
 
             <Button
                 android:text="구매옵션"
