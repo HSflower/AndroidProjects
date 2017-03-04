@@ -1,24 +1,24 @@
 package com.example.hong_inseon.projectlouvre;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ListViewAdapter2 extends BaseAdapter {
+public class ListViewAdapterExhibition extends BaseAdapter {
     Context mContext;
     LayoutInflater inflater;
     private List<Exhibition> worldexhibitionlist = null;
     private ArrayList<Exhibition> arraylist2;
 
-    public ListViewAdapter2(Context context, List<Exhibition> worldexhibitionlist) {
+    public ListViewAdapterExhibition(Context context, List<Exhibition> worldexhibitionlist) {
         mContext = context;
         this.worldexhibitionlist = worldexhibitionlist;
         inflater = LayoutInflater.from(mContext);
@@ -27,7 +27,8 @@ public class ListViewAdapter2 extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView name;
+        public TextView name1, name2, name3;
+        public ImageView p;
     }
 
     @Override
@@ -49,23 +50,33 @@ public class ListViewAdapter2 extends BaseAdapter {
         final ViewHolder holder;
         if (view == null) {
             holder = new ViewHolder();
-            view = inflater.inflate(R.layout.listview_item2, null);
-            holder.name = (TextView) view.findViewById(R.id.name2);
+            view = inflater.inflate(R.layout.exhibitionviewholder, null);
+            holder.name1 = (TextView) view.findViewById(R.id.textMname);
+            holder.name2 = (TextView) view.findViewById(R.id.textWname);
+            holder.name3 = (TextView) view.findViewById(R.id.textPname);
+            holder.p = (ImageView) view.findViewById(R.id.imageExhibition);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.name.setText(worldexhibitionlist.get(position).getName());
+        holder.name1.setText(worldexhibitionlist.get(position).getNameM());
+        holder.name2.setText(worldexhibitionlist.get(position).getNameW());
+        holder.name3.setText(worldexhibitionlist.get(position).getNameP());
+        holder.p.setImageResource(worldexhibitionlist.get(position).getImage());
 
-        view.setOnClickListener(new View.OnClickListener() {
+       /*view.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(mContext, SingleItemView.class);
-                intent.putExtra("name",(worldexhibitionlist.get(position).getName()));
+                intent.putExtra("nameM",(heartlist.get(position).getNameM()));
+                intent.putExtra("nameW",(heartlist.get(position).getNameW()));
+                intent.putExtra("nameP",(heartlist.get(position).getNameP()));
+                intent.putExtra("Image",(heartlist.get(position).getImage()));
                 mContext.startActivity(intent);
             }
-        });
+        });*/
 
         return view;
     }
@@ -80,7 +91,7 @@ public class ListViewAdapter2 extends BaseAdapter {
         {
             for (Exhibition wp : arraylist2)
             {
-                if (wp.getName().toLowerCase(Locale.getDefault()).contains(charText))
+                if (wp.getNameM().toLowerCase(Locale.getDefault()).contains(charText))
                 {
                     worldexhibitionlist.add(wp);
                 }
