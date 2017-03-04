@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,11 +21,14 @@ public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNa
     String[] name1, name2;
     int[] Image, rating;
     ArrayList<Museum> arraylist = new ArrayList<Museum>();
+    private int men;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temple);
+
+        men = -1;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar3);
         setSupportActionBar(toolbar);
@@ -39,9 +41,6 @@ public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNa
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view3);
         navigationView.setNavigationItemSelectedListener(this);
-
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.abs);
 
         name1 = new String[] { "China", "India", "United States",
                 "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh",
@@ -90,25 +89,29 @@ public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNa
         return super.onOptionsItemSelected(item);
     }//클릭했을시
 
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.cartid) {
-            Intent i = new Intent(this, Cart.class);
-            startActivity(i);
+            men = 0;
         } else if (id == R.id.profileid) {
-            Intent i = new Intent(this, Profile.class);
-            startActivity(i);
+            men = 1;
         } else if (id == R.id.heartid) {
-            Intent i = new Intent(this, LikeExhibition.class);
-            startActivity(i);
+            men = 2;
         } else if (id == R.id.templeid) {
-            Intent i = new Intent(this, LikeMuseum.class);
-            startActivity(i);
+            men = 3;
         }
+        Intent data = new Intent();
+        data.putExtra("value1", men);
+        setResult(1,data);
+        this.finish();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout3);
         drawer.closeDrawer(GravityCompat.START);
