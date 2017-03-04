@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     public void onClickMap(View view) {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
