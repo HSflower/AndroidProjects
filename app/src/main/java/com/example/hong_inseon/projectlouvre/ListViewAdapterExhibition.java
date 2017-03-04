@@ -99,4 +99,5 @@ public class ListViewAdapterExhibition extends BaseAdapter {
         }
         notifyDataSetChanged();
     }
+    //버튼을 눌렀을때 포함한 문자가 있을때 이를 리스트에 띄워 주는 메소드
 }
