@@ -5,16 +5,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-=======
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
->>>>>>> pmj
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
@@ -23,12 +22,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-<<<<<<< HEAD
-public class ExhibitionInfoActivity extends AppCompatActivity implements OnClickListener{
-=======
-public class ExhibitionInfoActivity extends Activity implements
-        OnClickListener,NavigationView.OnNavigationItemSelectedListener {
->>>>>>> pmj
+public class ExhibitionInfoActivity extends AppCompatActivity implements OnClickListener, NavigationView.OnNavigationItemSelectedListener{
 
     final Context context = this;
     private Button btnOptAlert;
@@ -42,12 +36,24 @@ public class ExhibitionInfoActivity extends Activity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exhibition_info_drawer);
+        setContentView(R.layout.activity_exhibition_info);
 
         aa = new Intent(this, Cart.class);
         bb = new Intent(this, Profile.class);
         cc = new Intent(this, LikeExhibition.class);
         dd = new Intent(this, LikeMuseum.class);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         WebView webView = (WebView)findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewClient());
@@ -149,21 +155,33 @@ public class ExhibitionInfoActivity extends Activity implements
         } else {
             super.onBackPressed();
         }
-    }//뒤로가기
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.some, menu);
         return true;
-    }//검색창
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
         Intent i = new Intent(this, OptionP.class);
         startActivity(i);
 
+        /*int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }*/
+
         return super.onOptionsItemSelected(item);
-    }//검색창
+    }//클릭했을시
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -184,7 +202,7 @@ public class ExhibitionInfoActivity extends Activity implements
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }//드로워 메뉴 선택
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == 0){
@@ -201,5 +219,5 @@ public class ExhibitionInfoActivity extends Activity implements
                 startActivityForResult(dd, 3);
             }
         }
-    }//메뉴에서 다른메뉴로 넘어갈때 쓰이는 함수
+    }
 }
