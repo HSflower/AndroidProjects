@@ -5,6 +5,7 @@
 package com.example.hong_inseon.projectlouvre;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
@@ -36,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnRegist; //sign up button
     private Button loginBtn; //Log in button
     CheckBox autoLogin;
-    SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+    SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
     SharedPreferences.Editor editor;
     Boolean loginChecked;
 

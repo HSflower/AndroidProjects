@@ -7,14 +7,14 @@ import org.json.JSONObject;
 
 public class JSONParser {
 	private static final String TAG = "MainActivity";
-	public static ExhiData getParser(String jsonString){
-		ExhiData exhiData = null;
+	public static Exhibition getParser(String jsonString){
+		Exhibition exhiData = null;
 		JSONObject obj = null;
 		JSONObject json = null;
 		try{
 			obj = new JSONObject(jsonString);
 			json = obj.getJSONObject("melon");
-			exhiData = new ExhiData();
+			exhiData = new Exhibition();
 			exhiData.setExhi_name(json.getString("exhi_name"));
 			exhiData.setExhi_no(json.getInt("exhi_no"));
 			exhiData.setExhi_intro(json.getString("exhi_intro"));

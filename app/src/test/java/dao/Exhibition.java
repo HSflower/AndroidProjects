@@ -3,11 +3,12 @@ package dao;
 import java.util.ArrayList;
 
 /**
- * Created by samsung on 2016-12-03.
+ * Created by 박명준 on 2017-02-23.
  */
+public class Exhibition {
 
-public class ExhiData {
-
+    private String nameM, nameW, nameP;
+    private int P; //
     private int exhi_no;
     private String exhi_intro;
     private String exhi_start;
@@ -16,6 +17,14 @@ public class ExhiData {
     private String exhi_pic1;
     private String exhi_pic2;
     private String ms_no;
+
+    public Exhibition(String nameM, String nameW, String nameP, int P) {
+        this.nameM = nameM;
+        this.nameW = nameW;
+        this.nameP = nameP;
+        this.P = P;
+
+    }
 
     ArrayList<Workbook> workbook;
     public ArrayList<Workbook> getWorkbooks() {
@@ -33,8 +42,6 @@ public class ExhiData {
         this.audio = audio;
     }
     //전시번호가 같은지 확인하고, 참거짓반환?
-
-    public ExhiData(){}
 
     @Override
     public String toString() {
@@ -105,4 +112,17 @@ public class ExhiData {
         this.exhi_pic2 = exhi_pic2;
     }
 
+
+    public String getNameM() {
+        return this.nameM;
+    }
+    public String getNameW() {
+        return this.nameW;
+    }
+    public String getNameP() {
+        return this.nameP;
+    }
+    public int getImage() {
+        return this.P;
+    }
 }
