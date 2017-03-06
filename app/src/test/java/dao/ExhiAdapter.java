@@ -11,6 +11,7 @@ public class ExhiAdapter extends BaseAdapter {
 	Context context;
 	int layout;
 	MuseumData data;
+
 	public ExhiAdapter(Context context, int layout, MuseumData data){
 		this.context = context;
 		this.layout = layout;
@@ -43,7 +44,7 @@ public class ExhiAdapter extends BaseAdapter {
 		if(cView == null){
 			cView = View.inflate(context, layout, null);
 		}
-		Workbook workbook = data.getSongs().get(position);
+		Workbook workbook = data.getWorkbooks().get(position);
 		
 		TextView tv = (TextView)cView.findViewById(R.id.rankId);
 		tv.setText(workbook.getCurrentRank() + "");

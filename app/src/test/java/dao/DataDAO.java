@@ -100,22 +100,22 @@ public class DataDAO {
 //        }
 //    }
 
-    public ArrayList<ExhiData> getExhiList(){
+    public ArrayList<Exhibition> getExhiList(){
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rst = null;
 
-        ArrayList<ExhiData> exhilist = new ArrayList<ExhiData>();
+        ArrayList<Exhibition> exhilist = new ArrayList<Exhibition>();
         try{
             conn = JDBCUtil.getConnection();
             //하나의 접속요청에 하나의 getConnection으로 접속요청을 할 것, 종료시 커넥션 종료 (그래야 요청 섞이지 않음)
 
             stmt = conn.prepareStatement(exhiListSQL);
             rst = stmt.executeQuery();
-            ExhiData exhiData = null;
+            Exhibition exhiData = null;
             //반환하는 것 여러개일수 있으므로 반복수행
             while(rst.next()) { //rst의 마지막 까지실행
-                exhiData = new ExhiData();
+                exhiData = new Exhibition();
                 exhiData.setExhi_no(rst.getInt(1)); //int에서 문자열로 형변환
                 exhiData.setExhi_intro(rst.getString(2));
                 exhiData.setExhi_start(rst.getString(3));
@@ -136,7 +136,7 @@ public class DataDAO {
     }
 
     //string seq 할수도 있지만 객체로 받아서 추후 기능확장 가능하도록 구현
-    public void	getExhiData(ExhiData exhiData){
+    public void	getExhiData(Exhibition exhiData){
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rst = null;
