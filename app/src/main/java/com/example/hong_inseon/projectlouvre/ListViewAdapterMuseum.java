@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.hong_inseon.projectlouvre.dao.DataDAO;
+import com.example.hong_inseon.projectlouvre.dao.Museum;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -18,6 +21,7 @@ public class ListViewAdapterMuseum extends BaseAdapter {
     LayoutInflater inflater;
     private List<Museum> worldmuseumlist = null;
     private ArrayList<Museum> arraylist;
+    DataDAO msList = new DataDAO();
 
     public ListViewAdapterMuseum(Context context, List<Museum> worldmuseumlist) {
         mContext = context;
@@ -62,10 +66,10 @@ public class ListViewAdapterMuseum extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.nameM.setText(worldmuseumlist.get(position).getNameM());
-        holder.nameA.setText(worldmuseumlist.get(position).getNameA());
-        holder.rating.setRating(worldmuseumlist.get(position).getNameR());
-        holder.Image.setImageResource(worldmuseumlist.get(position).getImage());
+        holder.nameM.setText(worldmuseumlist.get(position).getMs_name());
+        holder.nameA.setText(worldmuseumlist.get(position).getMs_address());
+        holder.rating.setRating(worldmuseumlist.get(position).getMs_rating());
+        holder.Image.setImageResource(worldmuseumlist.get(position).getMs_image());
 
         /*view.setOnClickListener(new View.OnClickListener() {
 
@@ -91,7 +95,7 @@ public class ListViewAdapterMuseum extends BaseAdapter {
         {
             for (Museum wp : arraylist)
             {
-                if (wp.getNameM().toLowerCase(Locale.getDefault()).contains(charText))
+                if (wp.getMs_name().toLowerCase(Locale.getDefault()).contains(charText))
                 {
                     worldmuseumlist.add(wp);
                 }

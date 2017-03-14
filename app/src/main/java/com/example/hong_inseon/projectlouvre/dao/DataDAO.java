@@ -21,6 +21,8 @@ public class DataDAO {
 
     // 미술관 리스트 선택
     private static final String msListSQL = "select * from museum order by ms_no desc;";
+    // 좋아요한 미술관 리스트 선택
+    private static final String msLikeListSQL = "select * from likeMuseum order by ms_no desc;";
     // 해당하는 미술관 정보 선택
     private static final String msSelectSQL = "select * from museum where ms_no = ? ;";
     // 전시 리스트 선택

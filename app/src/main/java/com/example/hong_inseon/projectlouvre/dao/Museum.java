@@ -90,6 +90,10 @@ public class Museum {
         Image = image;
     }
 
+    public String getMs_image() {
+        return ms_rating;
+    }
+
     @Override
     public String toString() {
         return "MuseumData{" +
