@@ -1,4 +1,4 @@
-package dao;
+package com.example.hong_inseon.projectlouvre.dao;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;

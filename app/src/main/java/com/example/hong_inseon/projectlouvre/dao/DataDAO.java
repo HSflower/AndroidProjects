@@ -1,4 +1,4 @@
-package dao;
+package com.example.hong_inseon.projectlouvre.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -170,23 +170,23 @@ public class DataDAO {
     }
 
     // 미술관 리스트와 각 미술관 정보 가져오기
-    public ArrayList<MuseumData> getMslist(){
+    public ArrayList<Museum> getMslist(){
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rst = null;
 
-        ArrayList<MuseumData> mslist = new ArrayList<MuseumData>();
+        ArrayList<Museum> mslist = new ArrayList<Museum>();
         try{
             conn = JDBCUtil.getConnection();
             //하나의 접속요청에 하나의 getConnection으로 접속요청을 할 것, 종료시 커넥션 종료 (그래야 요청 섞이지 않음)
 
             stmt = conn.prepareStatement(msListSQL);
             rst = stmt.executeQuery();
-            MuseumData museumData = null;
+            Museum museumData = null;
             //반환하는 것 여러개일수 있으므로 반복수행
             while(rst.next()) { //rst의 마지막 까지실행
-                museumData = new MuseumData();
-                museumData.setMs_no(rst.getInt(1)); //int에서 문자열로 형변환
+                museumData = new Museum();
+                museumData.setMs_no(rst.getString(1)); //int에서 문자열로 형변환
                 museumData.setMs_address(rst.getString(2));
                 museumData.setMs_phone(rst.getString(3));
                 museumData.setMs_webpage(rst.getString(4));
@@ -205,7 +205,7 @@ public class DataDAO {
     }
 
     //string seq 할수도 있지만 객체로 받아서 추후 기능확장 가능하도록 구현
-    public void	getMuseumData(MuseumData museumData){
+    public void	getMuseumData(Museum museumData){
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rst = null;
@@ -214,16 +214,13 @@ public class DataDAO {
             conn = JDBCUtil.getConnection();
             //하나의 접속요청에 하나의 getConnection으로 접속요청을 할 것, 종료시 커넥션 종료 (그래야 요청 섞이지 않음)
             //stmt = conn.prepareStatement(updateCntSQL);
-            stmt.setInt(1, museumData.getMs_no());
-            stmt.executeUpdate();
-
             stmt = conn.prepareStatement(exhiSelectSQL);
             //selectSQL 의 ?자리 채우기
-            stmt.setInt(1, museumData.getMs_no());
+            stmt.setInt(1, Integer.parseInt(museumData.getMs_no()));
             rst = stmt.executeQuery();
             //반환하는 것 여러개일수 있으므로 반복수행
             if(rst.next()) { //rst이 있는지 확인
-                museumData.setMs_no(rst.getInt(1));
+                museumData.setMs_no(rst.getString(1));
                 museumData.setMs_address(rst.getString(2));
                 museumData.setMs_phone(rst.getString(3));
                 museumData.setMs_webpage(rst.getString(4));

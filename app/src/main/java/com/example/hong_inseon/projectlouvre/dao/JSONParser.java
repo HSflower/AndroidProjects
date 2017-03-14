@@ -1,4 +1,4 @@
-package dao;
+package com.example.hong_inseon.projectlouvre.dao;
 
 import android.util.Log;
 
@@ -13,7 +13,7 @@ public class JSONParser {
 		JSONObject json = null;
 		try{
 			obj = new JSONObject(jsonString);
-			json = obj.getJSONObject("melon");
+			json = obj.getJSONObject("exhi");
 			exhiData = new Exhibition();
 			exhiData.setExhi_name(json.getString("exhi_name"));
 			exhiData.setExhi_no(json.getInt("exhi_no"));

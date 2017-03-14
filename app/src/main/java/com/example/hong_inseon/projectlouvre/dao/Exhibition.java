@@ -1,4 +1,4 @@
-package dao;
+package com.example.hong_inseon.projectlouvre.dao;
 
 import java.util.ArrayList;
 
@@ -24,6 +24,9 @@ public class Exhibition {
         this.nameP = nameP;
         this.P = P;
 
+    }
+
+    public Exhibition() {
     }
 
     ArrayList<Workbook> workbook;
