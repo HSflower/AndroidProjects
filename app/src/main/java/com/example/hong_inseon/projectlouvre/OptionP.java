@@ -5,8 +5,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -64,34 +66,50 @@ public class OptionP extends AppCompatActivity {
                 , "2017.02.22~2017.07.21","2017.02.21~2017.07.21", "2017.02.20~2017.07.21"};
         Image2 = new int[] {R.drawable.no,R.drawable.cart,R.drawable.heart,R.drawable.louvre,R.drawable.profile,
                 R.drawable.mypage,R.drawable.temple,R.drawable.search,R.drawable.cart,R.drawable.profile};
-        //관련 자료들 저장 - DB에서 쓸 자료들의 예시
 
-        list = (ListView) findViewById(R.id.listview);          //박물관 검색 결과를 띄울 리스트
-        list2 = (ListView)findViewById(R.id.listview2);         //전시회 검색 결과를 띄울 리스트
-        t = (TextView)findViewById(R.id.Result);                //찾은 검색 정보를 띄울 텍스트
-        t1 = (TextView)findViewById(R.id.textMuseum);           //검색시 "박물관"을 띄울 텍스트, edit text가 변할시 사라진다
-        t2 = (TextView)findViewById(R.id.textExhibition);      //검색시 "전시회"를 띄울 텍스트, 위와 같다
+        list = (ListView) findViewById(R.id.listview);
+        list2 = (ListView)findViewById(R.id.listview2);
+        t = (TextView)findViewById(R.id.Result);
+        t1 = (TextView)findViewById(R.id.textMuseum);
+        t2 = (TextView)findViewById(R.id.textExhibition);
 
         for (int i = 0; i < name1.length; i++)
         {
             Museum wp = new Museum(name1[i], rating[i], name2[i], Image[i]);
             arraylist.add(wp);
         }
-        //박물관 검색 리스트의 뷰홀더에 쓰일 클래스의 생성자를 자료들로 설정
 
         for (int i = 0; i < name2.length; i++) {
             Exhibition wp2 = new Exhibition(name3[i], name4[i], name5[i], Image2[i]);
             arraylist2.add(wp2);
         }
-        //전시회 검색 리스트의 뷰홀더에 쓰일 클래스의 생성자를 자료들로 설정
 
         adapter = new ListViewAdapterMuseum(this, arraylist);
         adapter2 = new ListViewAdapterExhibition(this, arraylist2);
 
-        list.setAdapter(adapter);           //어댑터 설정(박물관)
-        list2.setAdapter(adapter2);         //어댑터 설정(전시회)
+        list.setAdapter(adapter);
+        list2.setAdapter(adapter2);
+        editsearch = (EditText) findViewById(R.id.search);
 
-        editsearch = (EditText) findViewById(R.id.search);          //검색 창
+        editsearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                switch(actionId) {
+                    case EditorInfo.IME_ACTION_SEARCH:
+                        t.setText("찾은 검색 : 박물관 " + adapter.getCount() + "건, 전시회 " +adapter2.getCount() + "건");
+                        t1.setVisibility(VISIBLE);
+                        t2.setVisibility(VISIBLE);
+                        list.setVisibility(VISIBLE);
+                        list2.setVisibility(VISIBLE);
+                        Utility.setListViewHeightBasedOnChildren(list);
+                        Utility.setListViewHeightBasedOnChildren(list2);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+
         editsearch.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -105,7 +123,6 @@ public class OptionP extends AppCompatActivity {
                 adapter.filter(text);
                 adapter2.filter(text);
             }
-            //만약 텍스트에 변화가 있으면 위와 같이 설정한다.
 
             @Override
             public void beforeTextChanged(CharSequence arg0, int arg1,
@@ -130,7 +147,6 @@ public class OptionP extends AppCompatActivity {
         Utility.setListViewHeightBasedOnChildren(list);
         Utility.setListViewHeightBasedOnChildren(list2);
     }
-    //검색을 클릭시 설정할 메소드들
 
     public static class Utility {
         public static void setListViewHeightBasedOnChildren(ListView listView) {
