@@ -12,6 +12,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.hong_inseon.projectlouvre.dao.Exhibition;
+import com.example.hong_inseon.projectlouvre.dao.Museum;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -24,7 +27,8 @@ public class OptionP extends AppCompatActivity {
     ListViewAdapterExhibition adapter2;
     EditText editsearch;
     TextView t,t1,t2;
-    int[] Image, rating, Image2;
+    String[] Image, rating;
+    int[] Image2;
     String[] name4, name2, name1, name3, name5;
     ArrayList<Museum> arraylist = new ArrayList<Museum>();
     ArrayList<Exhibition> arraylist2 = new ArrayList<Exhibition>();
@@ -43,12 +47,11 @@ public class OptionP extends AppCompatActivity {
         name1 = new String[] { "China", "India", "United States",
                 "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh",
                 "Russia", "Japan"};
-        rating = new int[] { 4, 3, 5, 2, 4, 3, 4, 5, 1, 5};
+        rating = new String[] { "4", "3", "5", "2", "4", "3", "4", "5", "1", "5"};
         name2 = new String[] { "경기도 부천시 원미구", "서울특별시 강남구", "인천광역시 남동구 백범로 124번길",
                 "강원도 홍천시", "인천광역시 연수구 옥련동", "부산광역시 어딘가", "미국 Los Angelous 인지 어딘지 모름"
                 , "우주 안드로메다","이세상 어딘가에 있을거라고 믿는곳", "도서관 4층 일반자료실 노트북코너"};
-        Image = new int[] {R.drawable.no,R.drawable.cart,R.drawable.heart,R.drawable.louvre,R.drawable.profile,
-                R.drawable.mypage,R.drawable.temple,R.drawable.search,R.drawable.cart,R.drawable.profile};
+        Image = new String[] {};
 
         name3 = new String[] { "China", "India", "United States",
                 "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh",

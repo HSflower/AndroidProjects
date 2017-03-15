@@ -12,22 +12,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-
-import com.example.hong_inseon.projectlouvre.dao.DataDAO;
 import com.example.hong_inseon.projectlouvre.dao.Museum;
+import com.example.hong_inseon.projectlouvre.dao.MuseumDAO;
 
 import java.util.ArrayList;
 
 public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    String[] name1, name2, Image, rating;
+
     ListView list;
     ListViewAdapterMuseum listh;
-    String[] name1, name2;
-    int[] Image, rating;
     ArrayList<Museum> arraylist = new ArrayList<Museum>();
     private int men;
 
-    DataDAO msDao = new DataDAO();
+    MuseumDAO msDao = new MuseumDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,31 +47,11 @@ public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNa
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view3);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //query by user no, temporary user_no = 1
-        //liked table : user_no, liked_exhi_no/museum_no, liked_no
-        //select * from liked where user_no = 1 order by desc;
-        name1 = new String[] { "China", "India", "United States",
-                "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh",
-                "Russia", "Japan"};
-        rating = new String[] { "4", "3", "5", "2", "4", "3", "4", "5", "1", "5"};
-        name2 = new String[] { "경기도 부천시 원미구", "서울특별시 강남구", "인천광역시 남동구 백범로 124번길",
-                "강원도 홍천시", "인천광역시 연수구 옥련동", "부산광역시 어딘가", "미국 Los Angelous 인지 어딘지 모름"
-                , "우주 안드로메다","이세상 어딘가에 있을거라고 믿는곳", "도서관 4층 일반자료실 노트북코너"};
-        Image = new int[] {R.drawable.no,R.drawable.cart,R.drawable.heart,R.drawable.louvre,R.drawable.profile,
-                R.drawable.mypage,R.drawable.temple,R.drawable.search,R.drawable.cart,R.drawable.profile};
-
         list = (ListView)findViewById(R.id.listViewTemple);
 
-        for (int i = 0; i < name1.length; i++)
-        {
-            Museum hs = new Museum();
-            msDao.getMuseumData(hs);
-            //msDao.getMslist(hs);
-            arraylist.add(hs);
-        }
-        //리스트배열을 정리
-
+        arraylist = msDao.getMuseumList();
         listh = new ListViewAdapterMuseum(this, arraylist);
+
         list.setAdapter(listh);
     }
 

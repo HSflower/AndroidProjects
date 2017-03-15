@@ -8,9 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-import com.example.hong_inseon.projectlouvre.dao.DataDAO;
 import com.example.hong_inseon.projectlouvre.dao.Museum;
+import com.example.hong_inseon.projectlouvre.dao.MuseumDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +18,19 @@ import java.util.Locale;
 public class ListViewAdapterMuseum extends BaseAdapter {
     Context mContext;
     LayoutInflater inflater;
-    private List<Museum> worldmuseumlist = null;
-    private ArrayList<Museum> arraylist;
-    DataDAO msList = new DataDAO();
+    private List<Museum> museumData = null;
+    private ArrayList<Museum> museumArrayList;
 
-    public ListViewAdapterMuseum(Context context, List<Museum> worldmuseumlist) {
+    /**
+     * @param context
+     * @param museumArrayList : arraylist getMuseumList()
+     */
+    public ListViewAdapterMuseum(Context context, List<Museum> museumArrayList) {
         mContext = context;
-        this.worldmuseumlist = worldmuseumlist;
+        this.museumData = museumArrayList;
         inflater = LayoutInflater.from(mContext);
-        this.arraylist = new ArrayList<Museum>();
-        this.arraylist.addAll(worldmuseumlist);
+        this.museumArrayList = new ArrayList<Museum>();
+        this.museumArrayList.addAll(museumArrayList);
     }
 
     public class ViewHolder {
@@ -39,12 +41,12 @@ public class ListViewAdapterMuseum extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return worldmuseumlist.size();
+        return museumData.size();
     }
 
     @Override
     public Museum getItem(int position) {
-        return worldmuseumlist.get(position);
+        return museumData.get(position);
     }
 
     @Override
@@ -66,20 +68,12 @@ public class ListViewAdapterMuseum extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.nameM.setText(worldmuseumlist.get(position).getMs_name());
-        holder.nameA.setText(worldmuseumlist.get(position).getMs_address());
-        holder.rating.setRating(worldmuseumlist.get(position).getMs_rating());
-        holder.Image.setImageResource(worldmuseumlist.get(position).getMs_image());
-
-        /*view.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                Intent intent = new Intent(mContext, SingleItemView.class);
-                intent.putExtra("name",(worldmuseumlist.get(position).getName()));
-                mContext.startActivity(intent);
-            }
-        });*/
+        holder.nameM.setText(museumData.get(position).getMs_name());
+        holder.nameA.setText(museumData.get(position).getMs_address());
+        //ratingbar : int <- parseInt.getMs_rating() : string
+        holder.rating.setRating(Integer.parseInt(museumData.get(position).getMs_rating()));
+        // 이미지 주소값으로 이미지 불러와서 holder에 추가하기
+        // holder.Image.setImageResource(museumData.get(position).getMs_img());
 
         return view;
     }
@@ -87,17 +81,17 @@ public class ListViewAdapterMuseum extends BaseAdapter {
     // Filter Class
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
-        worldmuseumlist.clear();
+        museumData.clear();
         if (charText.length() == 0) {
-            worldmuseumlist.addAll(arraylist);
+            museumData.addAll(museumArrayList);
         }
         else
         {
-            for (Museum wp : arraylist)
+            for (Museum ms : museumArrayList)
             {
-                if (wp.getMs_name().toLowerCase(Locale.getDefault()).contains(charText))
+                if (ms.getMs_name().toLowerCase(Locale.getDefault()).contains(charText))
                 {
-                    worldmuseumlist.add(wp);
+                    museumData.add(ms);
                 }
             }
         }
