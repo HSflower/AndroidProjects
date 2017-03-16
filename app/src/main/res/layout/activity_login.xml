@@ -33,7 +33,7 @@
             android:layout_below="@+id/emailInput" />
 
         <Button
-            android:id="@+id/signupBtn"
+            android:id="@+id/btnSignup"
             android:layout_width="150dp"
             android:layout_height="55dp"
             android:text="Sign up"
@@ -50,14 +50,14 @@
             android:textAllCaps="false"
             android:layout_marginTop="41dp"
             android:layout_below="@+id/passwordInput"
-            android:layout_toStartOf="@+id/signupBtn"
+            android:layout_toStartOf="@+id/btnSignup"
             android:onClick="login_btn"/>
 
         <CheckBox
             android:text="autoLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/signupBtn"
+            android:layout_above="@+id/btnSignup"
             android:layout_alignStart="@+id/loginBtn"
             android:id="@+id/autoLogin" />
 

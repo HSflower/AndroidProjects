@@ -1,5 +1,4 @@
 package com.example.hong_inseon.projectlouvre;
-//import com.example.hong_inseon.projectlouvre.R;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +14,7 @@ public class JoinActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword;
     private EditText etPasswordConfirm;
-    private Button btnDone;
+    private Button btnJoin;
     private Button btnCancel;
 
     @Override
@@ -23,11 +22,11 @@ public class JoinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
-        etEmail = (EditText) findViewById(R.id.emailinput);
-        etPassword = (EditText) findViewById(R.id.pwinput);
-        etPasswordConfirm = (EditText) findViewById(R.id.pwconfirm);
-        btnDone = (Button) findViewById(R.id.joinbtn);
-        btnCancel = (Button) findViewById(R.id.canclebtn);
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        etPasswordConfirm = (EditText) findViewById(R.id.etPasswordConfirm);
+        btnJoin = (Button) findViewById(R.id.btnJoin);
+        btnCancel = (Button) findViewById(R.id.btnCancel);
 
         // 비밀번호 일치 검사
         etPasswordConfirm.addTextChangedListener(new TextWatcher() {
@@ -56,7 +55,7 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
-        btnDone.setOnClickListener(new View.OnClickListener() {
+        btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -106,5 +105,4 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
     }
-
 }

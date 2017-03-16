@@ -43,11 +43,18 @@ public class ListActivity extends AppCompatActivity {
         options.inSampleSize = 4;
 
         mAdapter.addItem(BitmapFactory.decodeResource(getResources(), R.drawable.louvre, options),
-                "Louvre 모나리자",
+                "Musée du Louvre",
                 "진행중");
         mAdapter.addItem(BitmapFactory.decodeResource(getResources(), R.drawable.orsay, options),
-                "Orsay 박물관입니다",
+                "Musée d'Orsay",
                 "예정");
+        mAdapter.addItem(BitmapFactory.decodeResource(getResources(), R.drawable.alfons, options),
+                "알폰스 무하, 모던 그래픽 디자인의 선구자",
+                "진행중");
+
+        mAdapter.addItem(BitmapFactory.decodeResource(getResources(), R.drawable.bazille, options),
+                "Frédéric Bazille",
+                "진행중");
         /*
         mAdapter.addItem(getResources().getDrawable(R.drawable.louvre, null),
                 "Lourve 모나리자",
