@@ -4,45 +4,70 @@
 
 package com.example.hong_inseon.projectlouvre;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-//
 //import org.apache.http.HttpResponse;
 //import org.apache.http.client.HttpClient;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 public class LoginActivity extends AppCompatActivity {
+
+    private EditText etEmail;
+    private Button btnSignup; //sign up button
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        btnSignup = (Button) findViewById(R.id.btnSignup);
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+
+                // SINGLE_TOP : 이미 만들어진게 있으면 그걸 쓰고 없으면 만들어서 사용
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+                // intent를 보내면서 다음 액티비티로부터 데이터를 받기 위해 식별번호(1000)을 준다.
+                startActivityForResult(intent, 1000);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //setResult를 통해 받아온 요청번호, 상태, 데이터
+        Log.d("RESULT", requestCode + "");
+        Log.d("RESULT", resultCode + "");
+        Log.d("RESULT", data + "");
+
+        if(requestCode == 1000 & resultCode == RESULT_OK) {
+            Toast.makeText(LoginActivity.this, "회원 가입을 완료했습니다!", Toast.LENGTH_SHORT).show();
+            etEmail.setText(data.getStringExtra("email"));
+        }
+    }
+
+    /*
     private EditText etEmail;
     private EditText etPassword;
-    private Button btnRegist; //sign up button
-    private Button loginBtn; //Log in button
+    //private Button btnRegist; //sign up button
+    //private Button loginBtn; //Log in button
     CheckBox autoLogin;
     SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
     SharedPreferences.Editor editor;
     Boolean loginChecked;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    //@Override
+    //protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -51,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         btnRegist = (Button) findViewById(R.id.signupBtn);
         autoLogin = (CheckBox) findViewById(R.id.autoLogin);
         loginBtn = (Button) findViewById(R.id.loginBtn);
-    }
+    //}
 
     public void join_btn(View view){
         Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
@@ -176,5 +201,7 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        }
 //    });
+
+*/
 
 }

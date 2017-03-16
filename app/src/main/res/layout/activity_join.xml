@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.hong_inseon.projectlouvre.JoinActivity1">
+    tools:context="com.example.hong_inseon.projectlouvre.JoinActivity">
 
     <TextView
         android:text="EMAIL"
@@ -18,14 +18,14 @@
         android:layout_marginTop="167dp"
         android:id="@+id/textView5"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/emailinput"
+        android:layout_toStartOf="@+id/etEmail"
         android:layout_marginEnd="34dp"/>
     <EditText
+        android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/emailinput"
         android:layout_alignBaseline="@+id/textView5"
         android:layout_alignBottom="@+id/textView5"
         android:layout_alignParentEnd="true"
@@ -36,89 +36,19 @@
         android:text="PW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/emailinput"
+        android:layout_below="@+id/etEmail"
         android:layout_alignStart="@+id/textView5"
         android:layout_marginTop="14dp"
         android:id="@+id/textView6"/>
     <EditText
+        android:id="@+id/etPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_below="@+id/emailinput"
-        android:layout_alignEnd="@+id/emailinput"
-        android:id="@+id/pwinput"
+        android:layout_below="@+id/etEmail"
+        android:layout_alignEnd="@+id/etEmail"
         android:hint="********"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/pwinput"
-        android:layout_alignEnd="@+id/pwinput"
-        android:id="@+id/pwconfirm"
-        android:hint="********"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/pwconfirm"
-        android:layout_alignStart="@+id/pwconfirm"
-        android:id="@+id/nameinput"
-        android:hint="김신"/>
-
-    <TextView
-        android:text="GENDER"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView10"
-        android:layout_marginTop="11dp"
-        android:layout_below="@+id/nameinput"
-        android:layout_alignStart="@+id/textView8"/>
-    <RadioButton
-        android:text="남"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rbm"
-        android:layout_below="@+id/nameinput"
-        android:layout_alignStart="@+id/nameinput"/>
-    <RadioButton
-        android:text="여"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rbf"
-        android:layout_below="@+id/nameinput"
-        android:layout_toEndOf="@+id/rbm"
-        android:layout_marginStart="17dp"/>
-
-    <Button
-        android:text="JOIN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rbm"
-        android:layout_toEndOf="@+id/rbm"
-        android:layout_marginTop="42dp"
-        android:id="@+id/joinbtn"/>
-
-    <Button
-        android:text="CANCLE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/joinbtn"
-        android:layout_toStartOf="@+id/joinbtn"
-        android:id="@+id/canclebtn"/>
-
-    <TextView
-        android:text="NAME"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:layout_alignBaseline="@+id/nameinput"
-        android:layout_alignBottom="@+id/nameinput"
-        android:layout_alignStart="@+id/textView7" />
 
     <TextView
         android:text="PW confirm"
@@ -126,8 +56,78 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
         android:layout_marginEnd="20dp"
-        android:layout_alignBaseline="@+id/pwconfirm"
-        android:layout_alignBottom="@+id/pwconfirm"
-        android:layout_toStartOf="@+id/pwconfirm" />
+        android:layout_alignBaseline="@+id/etPasswordConfirm"
+        android:layout_alignBottom="@+id/etPasswordConfirm"
+        android:layout_toStartOf="@+id/etPasswordConfirm" />
+    <EditText
+        android:id="@+id/etPasswordConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_below="@+id/etPassword"
+        android:layout_alignEnd="@+id/etPassword"
+        android:hint="********"/>
+
+    <TextView
+        android:text="NAME"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:layout_alignBaseline="@+id/etName"
+        android:layout_alignBottom="@+id/etName"
+        android:layout_alignStart="@+id/textView7" />
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/etPasswordConfirm"
+        android:layout_alignStart="@+id/etPasswordConfirm"
+        android:hint="김신"/>
+<!--
+    <TextView
+        android:text="GENDER"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/etName"
+        android:layout_alignStart="@+id/textView8"/>
+    <RadioButton
+        android:text="남"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rbm"
+        android:layout_below="@+id/etName"
+        android:layout_alignStart="@+id/etName"/>
+    <RadioButton
+        android:text="여"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rbf"
+        android:layout_below="@+id/etName"
+        android:layout_toEndOf="@+id/rbm"
+        android:layout_marginStart="17dp"/>
+-->
+
+    <Button
+        android:text="CANCLE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnJoin"
+        android:layout_toStartOf="@+id/btnJoin"
+        android:id="@+id/btnCancel"/>
+
+    <Button
+        android:text="JOIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="74dp"
+        android:id="@+id/btnJoin"
+        android:layout_below="@+id/etName"
+        android:layout_alignStart="@+id/etName"
+        android:layout_marginStart="55dp"/>
 
 </RelativeLayout>
