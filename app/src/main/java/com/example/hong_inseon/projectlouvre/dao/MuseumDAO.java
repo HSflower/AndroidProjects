@@ -1,5 +1,7 @@
 package com.example.hong_inseon.projectlouvre.dao;
 
+import android.util.Log;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,6 +42,7 @@ public class MuseumDAO {
             //하나의 접속요청에 하나의 getConnection으로 접속요청을 할 것, 종료시 커넥션 종료 (그래야 요청 섞이지 않음)
 
             stmt = conn.prepareStatement(msListSQL);
+            Log.e("stmt: ",stmt+", stmt is null?");
             rst = stmt.executeQuery();
             Museum msData = null;
             //반환하는 것 여러개일수 있으므로 반복수행, 결과를 데이터객체에 저장

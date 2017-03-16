@@ -13,7 +13,7 @@ public class JDBCUtil {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            return DriverManager.getConnection("jdbc:mysql://35.161.181.60:3308/mysql", "nullteam", "null");
+            return DriverManager.getConnection("jdbc:mysql://35.161.181.60:3306/louvre", "nullteam", "null");
         } catch (Exception e) {
             e.printStackTrace();
         }
