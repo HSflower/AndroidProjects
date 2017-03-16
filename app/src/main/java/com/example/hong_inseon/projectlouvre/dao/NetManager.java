@@ -1,4 +1,4 @@
-package dao;
+package com.example.hong_inseon.projectlouvre.dao;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -8,20 +8,20 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
-public class NetManager1 {
-
+public class NetManager {
+	static HttpClient httpclient = null;
 
 	public static HttpClient getHttpClient(){
-		HttpClient httpclient = null;
-		HttpParams hp = new BasicHttpParams();
-		HttpConnectionParams.setConnectionTimeout(hp,10000);
-		HttpConnectionParams.setSoTimeout(hp,10000) ;
-		httpclient = new DefaultHttpClient(hp);
-
+		if(httpclient == null){
+			HttpParams hp = new BasicHttpParams();
+			HttpConnectionParams.setConnectionTimeout(hp,10000);
+			HttpConnectionParams.setSoTimeout(hp,10000) ;
+			httpclient = new DefaultHttpClient(hp);
+		}
 		return httpclient ;
 	}
-	public static HttpGet getGet(String url){ 	//HttpGet
-
+	public static HttpGet getGet(String url){
+		if(httpclient == null){	httpclient =  getHttpClient();}
 		HttpGet httpGet =  new HttpGet( url );
 		httpGet.setHeader("Connection","Keep-Alive"); 
 		httpGet.setHeader("Accept","application/xml"); 
@@ -32,9 +32,11 @@ public class NetManager1 {
 		httpGet.setHeader("Expires","0"); 
 		return httpGet;
 	}
-	//HttpPost xml 
-	public static HttpPost getPost1(String url){
 
+	public static HttpPost getPost1(String url){
+		if(httpclient == null){
+			httpclient =  getHttpClient();
+		}
 		HttpPost post =  new HttpPost( url );
 		post.setHeader("Connection","Keep-Alive"); 
 		post.setHeader("Accept","application/xml"); 
@@ -42,12 +44,13 @@ public class NetManager1 {
 		post.setHeader("User-Agent","ANDROID"); 
 		return post;
 	}
-	//HttpPost
-	public static HttpPost getPost(String url){
 
+	public static HttpPost getPost(String url){
+		if(httpclient == null){
+			httpclient =  getHttpClient();
+		}
 		HttpPost post =  new HttpPost( url );
 		post.setHeader("User-Agent","ANDROID"); 
 		return post;
 	}
-
 }

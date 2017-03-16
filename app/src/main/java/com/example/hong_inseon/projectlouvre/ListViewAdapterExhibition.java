@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.hong_inseon.projectlouvre.dao.Exhibition;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

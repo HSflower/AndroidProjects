@@ -1,4 +1,4 @@
-package dao;
+package com.example.hong_inseon.projectlouvre.dao;
 
 public class ServerUtil {
 	public static final String SERVER_URL = "http://35.161.181.60/";
