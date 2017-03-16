@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.example.hong_inseon.projectlouvre.dao.Museum;
-import com.example.hong_inseon.projectlouvre.dao.MuseumDAO;
 
 import java.util.ArrayList;
 import java.util.List;

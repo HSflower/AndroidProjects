@@ -1,5 +1,7 @@
 package com.example.hong_inseon.projectlouvre.dao;
 
+import android.util.Log;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,13 +13,17 @@ import java.sql.ResultSet;
 
 public class JDBCUtil {
     public static Connection getConnection() {
+        Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            return DriverManager.getConnection("jdbc:mysql://35.161.181.60:3306/louvre", "nullteam", "null");
+            conn = DriverManager.getConnection("jdbc:mysql://35.161.181.60:3306/louvre"+"nullteam"+"null");
+            Log.v("jdbc getConnection","result is"+conn);
+            //return DriverManager.getConnection("jdbc:mysql://35.161.181.60:3306/louvre"+"nullteam"+"null");
+            return conn;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return conn;
     }
 
     //select안하는경우

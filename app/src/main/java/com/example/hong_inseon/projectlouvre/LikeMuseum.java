@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -49,6 +50,7 @@ public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNa
 
         list = (ListView)findViewById(R.id.listViewTemple);
 
+        Log.v("msDao :", msDao+", right?");
         arraylist = msDao.getMuseumList();
         listh = new ListViewAdapterMuseum(this, arraylist);
 

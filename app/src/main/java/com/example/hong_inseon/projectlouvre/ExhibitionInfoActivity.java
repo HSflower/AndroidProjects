@@ -36,6 +36,7 @@ public class ExhibitionInfoActivity extends AppCompatActivity implements OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //?? 에러있는 듯?
         setContentView(R.layout.activity_exhibition_info_drawer);
 
         aa = new Intent(this, Cart.class);

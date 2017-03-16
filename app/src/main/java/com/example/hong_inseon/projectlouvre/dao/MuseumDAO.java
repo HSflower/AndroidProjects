@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -33,7 +34,8 @@ public class MuseumDAO {
     // 미술관 리스트에 각 미술관 정보 가져오기
     public ArrayList<Museum> getMuseumList(){
         Connection conn = null;
-        PreparedStatement stmt = null;
+        //PreparedStatement stmt = null;
+        Statement stmt = null;
         ResultSet rst = null;
 
         ArrayList<Museum> mslist = new ArrayList<Museum>();
@@ -41,9 +43,15 @@ public class MuseumDAO {
             conn = JDBCUtil.getConnection();
             //하나의 접속요청에 하나의 getConnection으로 접속요청을 할 것, 종료시 커넥션 종료 (그래야 요청 섞이지 않음)
 
-            stmt = conn.prepareStatement(msListSQL);
-            Log.e("stmt: ",stmt+", stmt is null?");
-            rst = stmt.executeQuery();
+            if(conn!=null){
+                stmt = conn.createStatement();//statement객체생성,
+                Log.v("stmt",stmt+", stmt is null?");
+                rst = stmt.executeQuery(msListSQL);
+            } else{
+                rst = null;
+            }
+            //stmt = conn.prepareStatement(msListSQL);
+            //rst = stmt.executeQuery();
             Museum msData = null;
             //반환하는 것 여러개일수 있으므로 반복수행, 결과를 데이터객체에 저장
             while(rst.next()) { //rst의 마지막 까지실행
@@ -66,7 +74,7 @@ public class MuseumDAO {
         } catch(SQLException e){
             System.out.println("list e : " + e);
         } finally {
-            JDBCUtil.close(stmt, conn);
+            //JDBCUtil.close(stmt, conn);
         }
 
         return mslist; // 미술관리스트 객체 반환
