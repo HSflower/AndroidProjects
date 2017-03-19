@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import com.example.hong_inseon.projectlouvre.dao.Museum;
 import com.example.hong_inseon.projectlouvre.dao.MuseumDAO;
+import com.example.hong_inseon.projectlouvre.dao.ServerUtil;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -32,11 +33,10 @@ import java.util.ArrayList;
 public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     String[] name1, name2, Image, rating;
-
+    MuseumDAO msDao;
     ListView list;
     ListViewAdapterMuseum listh;
     ArrayList<Museum> arraylist = new ArrayList<Museum>();
-    MuseumDAO msDao;
     Museum msData;
     private int men;
     // 미술관 리스트 선택
@@ -46,23 +46,10 @@ public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNa
     // 해당하는 미술관 정보 선택
     private static final String msSelectSQL = "select * from museum where ms_no = ? ;";
 
-    /*
-     msData.setMs_no(rst.getString(1));
-                msData.setMs_address(rst.getString(2));
-                msData.setMs_phone(rst.getString(3));
-                msData.setMs_url(rst.getString(4));
-                msData.setMs_holiday(rst.getString(5));
-                msData.setMs_operating(rst.getString(6));
-                msData.setMs_name(rst.getString(7));
-                msData.setMs_rating(rst.getString(8));
-                msData.setMs_like(rst.getString(9));
-                msData.setMs_Img(rst.getString(10));
-                msData.setMs_exp(rst.getString(11));
-     */
     String str =
-            "[{'no':'1','address':adresscontent,'phone':'010','url':'http://www.com','holiday':'일요일','operating':'월요일','name':'슈퍼맨','rating':'5','like':'20','img':'/img/','exp':'2017-09-09'},"+
-                    "{'no':'2','address':adresscontent,'phone':'010','url':'http://www.com','holiday':'일요일','operating':'월요일','name':'배트맨','rating':'1','like':'2','img':'/img/','exp':'2017-09-01'},"+
-                    "{'no':'3','address':adresscontent,'phone':'010','url':'http://www.com','holiday':'일요일','operating':'월요일','name':'앤트맨','rating':'2.5','like':'0','img':'/img/','exp':'2017-01-09'}]";
+            "[{'no':'1','address':'adresscontent','phone':'010','url':'http://www.com','holiday':'일요일','operating':'월요일','name':'슈퍼맨','rating':'5','like':'20','img':'/img/','exp':'2017-09-09'},"+
+                    "{'no':'2','address':'adresscontent','phone':'010','url':'http://www.com','holiday':'일요일','operating':'월요일','name':'배트맨','rating':'1','like':'2','img':'/img/','exp':'2017-09-01'},"+
+                    "{'no':'3','address':'adresscontent','phone':'010','url':'http://www.com','holiday':'일요일','operating':'월요일','name':'앤트맨','rating':'2.5','like':'0','img':'/img/','exp':'2017-01-09'}]";
     //''없이 그냥 입력해서 숫자 입력가능 - getInt로 받기
 
     @Override
@@ -107,7 +94,7 @@ public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNa
         if(msg == null)
             msg = "";
 
-        String URL = "http://35.161.181.60/JSONServer.jsp";
+        String URL = ServerUtil.SERVER_URL;
         DefaultHttpClient client = new DefaultHttpClient();
 
         try {
@@ -154,7 +141,14 @@ public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNa
                     msData.setMs_no(jObject.getString("no"));
                     msData.setMs_name(jObject.getString("name"));
                     msData.setMs_rating(jObject.getString("rating"));
-
+                    msData.setMs_exp(jObject.getString("exp"));
+                    msData.setMs_url(jObject.getString("url"));
+                    msData.setMs_like(jObject.getString("like"));
+                    msData.setMs_address(jObject.getString("address"));
+                    msData.setMs_holiday(jObject.getString("holiday"));
+                    msData.setMs_Img(jObject.getString("img"));
+                    msData.setMs_operating(jObject.getString("operating"));
+                    msData.setMs_phone(jObject.getString("phone"));
                     arraylist.add(msData);
                 }
             }
