@@ -26,6 +26,9 @@ public class ListViewAdapterMuseum extends BaseAdapter {
      */
     public ListViewAdapterMuseum(Context context, List<Museum> museumArrayList) {
         mContext = context;
+        if(museumArrayList==null) {
+            return;
+        }
         this.museumData = museumArrayList;
         inflater = LayoutInflater.from(mContext);
         this.museumArrayList = new ArrayList<Museum>();
