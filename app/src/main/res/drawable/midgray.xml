@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_pressed="true" >
 
         <shape>
-
             <size
                 android:width="90dp"
 
                 android:height="20dp" />
 
+
             <solid
 
-                android:color="#a276eb" />
+                android:color="#aaaaaa" />
 
             <stroke
 
                 android:width="1dp"
 
-                android:color="#6a3ab2" />
+                android:color="#333333" />
 
             <corners
 
@@ -45,9 +44,9 @@
 
             <gradient
 
-                android:startColor="#a276eb"
+                android:startColor="#dddddd"
 
-                android:endColor="#6a3ab2"
+                android:endColor="#888888"
 
                 android:angle="270" />
 
@@ -55,7 +54,7 @@
 
                 android:width="1dp"
 
-                android:color="#6a3ab2" />
+                android:color="#222222" />
 
             <corners
 
@@ -74,5 +73,6 @@
         </shape>
 
     </item>
+
 
 </selector>

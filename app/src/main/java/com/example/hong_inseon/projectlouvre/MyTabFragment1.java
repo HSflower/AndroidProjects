@@ -32,7 +32,7 @@ public class MyTabFragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_list, container, false);
+        final View view = inflater.inflate(R.layout.activity_list, container, false);
 
         mListView = (ListView)view.findViewById(R.id.mList);
 
@@ -74,8 +74,8 @@ public class MyTabFragment1 extends Fragment {
                 //Intent intent = new Intent(this, ExhibitionInfoActivity.class);
                 //startActivity(intent);
 
-                //Intent intent = new Intent(MyTabFragment1.class, ExhibitionInfoActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(view.getContext(), ExhibitionInfoActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -4,6 +4,11 @@
     <item android:state_pressed="true" >
 
         <shape>
+            <size
+                android:width="90dp"
+
+                android:height="20dp" />
+
 
             <solid
 
