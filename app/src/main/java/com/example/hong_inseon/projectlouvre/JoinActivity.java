@@ -1,8 +1,8 @@
 package com.example.hong_inseon.projectlouvre;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,7 +14,7 @@ public class JoinActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword;
     private EditText etPasswordConfirm;
-    private Button btnJoin;
+    private Button btnDone;
     private Button btnCancel;
 
     @Override
@@ -25,7 +25,7 @@ public class JoinActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         etPasswordConfirm = (EditText) findViewById(R.id.etPasswordConfirm);
-        btnJoin = (Button) findViewById(R.id.btnJoin);
+        btnDone = (Button) findViewById(R.id.btnDone);
         btnCancel = (Button) findViewById(R.id.btnCancel);
 
         // 비밀번호 일치 검사
@@ -55,7 +55,7 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
-        btnJoin.setOnClickListener(new View.OnClickListener() {
+        btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

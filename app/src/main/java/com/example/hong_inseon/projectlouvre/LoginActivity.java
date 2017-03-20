@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail;
-    private Button btnSignup; //sign up button
+    private Button btnJoin; //sign up button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         etEmail = (EditText) findViewById(R.id.etEmail);
-        btnSignup = (Button) findViewById(R.id.btnSignup);
-        btnSignup.setOnClickListener(new View.OnClickListener() {
+        btnJoin = (Button) findViewById(R.id.btnJoin);
+        btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
