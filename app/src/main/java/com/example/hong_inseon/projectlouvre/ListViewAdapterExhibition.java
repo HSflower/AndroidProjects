@@ -65,7 +65,7 @@ public class ListViewAdapterExhibition extends BaseAdapter {
         holder.name1.setText(worldexhibitionlist.get(position).getNameM());
         holder.name2.setText(worldexhibitionlist.get(position).getNameW());
         holder.name3.setText(worldexhibitionlist.get(position).getNameP());
-        holder.p.setImageResource(worldexhibitionlist.get(position).getImage());
+//        holder.p.setImageResource(worldexhibitionlist.get(position).getImage());
 
        /*view.setOnClickListener(new View.OnClickListener() {
 
