@@ -25,7 +25,7 @@ import android.widget.Toast;
 public class ExhibitionInfoActivity extends AppCompatActivity implements OnClickListener, NavigationView.OnNavigationItemSelectedListener{
 
     final Context context = this;
-    private Button btnOptAlert;
+    public Button btnOptAlert;
 
     public static Intent aa;
     public static Intent bb;

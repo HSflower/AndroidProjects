@@ -46,7 +46,9 @@
         <activity
             android:name=".OptionP"
             android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name=".Cart" />
+        <activity android:name=".Cart"
+            android:label=" "
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".Profile" />
         <activity
             android:name=".LikeExhibition"
