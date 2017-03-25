@@ -5,20 +5,32 @@
 package com.example.hong_inseon.projectlouvre;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
+
+//import static android.app.Activity.RESULT_OK;
 //import org.apache.http.HttpResponse;
 //import org.apache.http.client.HttpClient;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail;
+    private EditText etPassword;
     private Button btnJoin; //sign up button
+    private Button btnLogin; //login button
+    private CheckBox autoLogin;
+
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    //Boolean loginChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +38,18 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         etEmail = (EditText) findViewById(R.id.etEmail);
+        etPassword = (EditText) findViewById(R.id.etPassword);
         btnJoin = (Button) findViewById(R.id.btnJoin);
+        autoLogin = (CheckBox) findViewById(R.id.autoLogin);
+
+        pref = getSharedPreferences("pref", 0);
+        editor = pref.edit();
+
+
+        //회원가입 버튼 누르면
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
 
                 // SINGLE_TOP : 이미 만들어진게 있으면 그걸 쓰고 없으면 만들어서 사용
@@ -39,10 +59,41 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1000);
             }
         });
+
+        //if autoLogin checked, get input
+        if (pref.getBoolean("autoLogin", false)) {
+            etEmail.setText(pref.getString("id", ""));
+            etPassword.setText(pref.getString("pw", ""));
+            autoLogin.setChecked(true);
+            // goto LoginActivity
+        }
+
+
+
+        //set checkBoxListener
+        // 로그인 처리
+        autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    String id = etEmail.getText().toString();
+                    String pw = etEmail.getText().toString();
+
+                    editor.putString("id", id);
+                    editor.putString("pw", pw);
+                    editor.putBoolean("autoLogin", true);
+                    editor.commit();
+                } else {
+                    //if unChecked, remove All
+                    editor.clear();
+                    editor.commit();
+                }
+            }
+        });
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //setResult를 통해 받아온 요청번호, 상태, 데이터
@@ -50,13 +101,85 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("RESULT", resultCode + "");
         Log.d("RESULT", data + "");
 
-        if(requestCode == 1000 & resultCode == RESULT_OK) {
+        if (requestCode == 1000 & resultCode == RESULT_OK) {
             Toast.makeText(LoginActivity.this, "회원 가입을 완료했습니다!", Toast.LENGTH_SHORT).show();
             etEmail.setText(data.getStringExtra("email"));
         }
     }
 
+    public void login_btn(View view){
+        Toast.makeText(LoginActivity.this, "login successed", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+       // String sMessage = etEmail.getText().toString();
+        //String result = SendByHttp(sMessage);
+       // String[][] parsedData = jsonParserList(result); //data parsing
+       // if(parsedData[0][0].equals("succed")){
+       //     Toast.makeText(LoginActivity.this, "login successed", Toast.LENGTH_LONG).show();
+       //     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+       //     startActivity(intent);
+        //    finish();
+       // }
+    }
+
+
+
+
+
     /*
+
+    //////????
+        else {
+            // if autoLogin unChecked
+            String email = etEmail.getText().toString();
+            String password = etPassword.getText().toString();
+            Boolean validation = loginValidation(email, password);
+
+            if (validation) {
+                Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_LONG).show();
+                // save id, password to Database
+
+                if (loginChecked) {
+                    // if autoLogin Checked, save values
+                    editor.putString("email", email);
+                    editor.putString("password", password);
+                    editor.putBoolean("autoLogin", true);
+                    editor.commit();
+                }
+
+                //goto LoginActivity
+            } else {
+                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
+                //goto LoginActivity
+            }
+        }
+
+
+// 로그인 확인
+    // Preference에서 받아온 정보와 일치하면 true반환
+    // 저장된 정보가 없거나 일치하지 않으면 false 반환
+    private boolean loginValidation(String id, String password) {
+        if(pref.getString("id","").equals(id) && pref.getString("pw","").equals(password)) {
+            // login success
+            return true;
+        } else if (pref.getString("id","").equals(null)){
+            // sign in first
+            Toast.makeText(LoginActivity.this, "Please Sign in first", Toast.LENGTH_LONG).show();
+            return false;
+        } else {
+            // login failed
+            return false;
+        }
+    }
+
+
+
+
+
+
+    //
+
     private EditText etEmail;
     private EditText etPassword;
     //private Button btnRegist; //sign up button
