@@ -2,6 +2,10 @@
 <manifest package="com.example.hong_inseon.projectlouvre"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:maxSdkVersion="8"/>
+
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true"/>

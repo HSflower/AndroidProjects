@@ -7,6 +7,7 @@ package com.example.hong_inseon.projectlouvre;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,16 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 //import static android.app.Activity.RESULT_OK;
 //import org.apache.http.HttpResponse;
@@ -69,9 +80,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-
         //set checkBoxListener
-        // 로그인 처리
+        // 자동 로그인 처리
         autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -107,22 +117,92 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void login_btn(View view){
-        Toast.makeText(LoginActivity.this, "login successed", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-       // String sMessage = etEmail.getText().toString();
-        //String result = SendByHttp(sMessage);
-       // String[][] parsedData = jsonParserList(result); //data parsing
-       // if(parsedData[0][0].equals("succed")){
-       //     Toast.makeText(LoginActivity.this, "login successed", Toast.LENGTH_LONG).show();
-       //     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-       //     startActivity(intent);
-        //    finish();
-       // }
+    public void login_btn(View view) {
+        //Toast.makeText(LoginActivity.this, "login successed", Toast.LENGTH_LONG).show();
+        //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        //startActivity(intent);
+        //finish();
+        // 검사 추가해야 함
+
+        // http 통신
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        // 로그인 버튼 누르면 서버에 데이터 보내고 받기
+        String sMessage = etEmail.getText().toString(); // 보내는 메시지 받아옴
+        String result = SendByHttp(sMessage); // 메세지를 서버에 보냄, 데이터 보내고 받은 것을 result에 저장
+        String[][] parsedData = jsonParserList(result); // 받은 메시지(데이터) 파싱
+
+        if (parsedData[0][0].equals("succed")) {
+            Toast.makeText(LoginActivity.this, "login successed", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
+    private String SendByHttp(String msg) {
+        if (msg == null) {
+            msg = "";
+        }
+
+        // 웹서버 주소 설정
+        String URL = "http://ec2-35-161-181-60.us-west-2.compute.amazonaws.com:8080/ProjectLOUVRE/memberDB.jsp";
+        DefaultHttpClient client = new DefaultHttpClient();
+
+        try {
+            /* 체크할 id와 pw값 서버로 전송 */
+            HttpPost post = new HttpPost(URL + "?id=" + etEmail.getText().toString() + "&pw=" + etPassword.getText().toString());
+
+            /* 데이터 보낸 뒤 서버에서 데이터를 받아오는 과정 */
+            HttpResponse response = client.execute(post);
+
+            BufferedReader bufreader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "utf-8"));
+            String line = null;
+            String result = "";
+
+            while ((line = bufreader.readLine()) != null) {
+                result += line;
+            }
+            return result;
+        } catch (Exception e) { // 예외처리
+            e.printStackTrace();
+            //client.getConnectionManager().shutdown(); // 연결 지연 종료
+            return "";
+        }
+    }
+
+    // 받아온 데이터 파싱하는 함수
+    public String[][] jsonParserList(String pRecvServerPage) {
+        Log.i("서버에서 받은 전체 내용", pRecvServerPage); // 받아온 데이터 확인
+
+        try {
+            JSONObject json = new JSONObject(pRecvServerPage);
+            JSONArray jArr = json.getJSONArray("List");
+
+            // 받아온 pRecvServerPage를 분석하는 부분
+            String[] jsonName = {"msg1", "msg2", "msg3"};
+            String[][] parseredData = new String[jArr.length()][jsonName.length];
+            for (int i = 0; i < jArr.length(); i++) {
+                json = jArr.getJSONObject(i);
+                for (int j = 0; j < jsonName.length; j++) {
+                    parseredData[i][j] = json.getString(jsonName[j]);
+                }
+            }
+
+            // 분해 된 데이터를 확인하기 위한 부분
+            for (int i = 0; i < parseredData.length; i++) {
+                Log.i("JSON을 분석한 데이터" + i + ":", parseredData[i][0]);
+                Log.i("JSON을 분석한 데이터" + i + ":", parseredData[i][1]);
+                Log.i("JSON을 분석한 데이터" + i + ":", parseredData[i][2]);
+            }
+            return parseredData; // 파싱한 데이터 넘김
+        } catch (JSONException e) { // 예외처리
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
 
 
 
@@ -327,4 +407,3 @@ public class LoginActivity extends AppCompatActivity {
 
 */
 
-}
