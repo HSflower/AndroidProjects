@@ -25,7 +25,7 @@ import android.widget.Toast;
 public class ExhibitionInfoActivity extends AppCompatActivity implements OnClickListener, NavigationView.OnNavigationItemSelectedListener{
 
     final Context context = this;
-    private Button btnOptAlert;
+    public Button btnOptAlert;
 
     public static Intent aa;
     public static Intent bb;
@@ -36,6 +36,7 @@ public class ExhibitionInfoActivity extends AppCompatActivity implements OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //?? 에러있는 듯?
         setContentView(R.layout.activity_exhibition_info_drawer);
 
         aa = new Intent(this, Cart.class);

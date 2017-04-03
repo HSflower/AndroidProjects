@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.hong_inseon.projectlouvre.dao.Exhibition;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -63,7 +65,7 @@ public class ListViewAdapterExhibition extends BaseAdapter {
         holder.name1.setText(worldexhibitionlist.get(position).getNameM());
         holder.name2.setText(worldexhibitionlist.get(position).getNameW());
         holder.name3.setText(worldexhibitionlist.get(position).getNameP());
-        holder.p.setImageResource(worldexhibitionlist.get(position).getImage());
+//        holder.p.setImageResource(worldexhibitionlist.get(position).getImage());
 
        /*view.setOnClickListener(new View.OnClickListener() {
 

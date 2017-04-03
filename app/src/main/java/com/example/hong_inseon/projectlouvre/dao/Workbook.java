@@ -1,4 +1,4 @@
-package dao;
+package com.example.hong_inseon.projectlouvre.dao;
 
 import java.io.Serializable;
 
