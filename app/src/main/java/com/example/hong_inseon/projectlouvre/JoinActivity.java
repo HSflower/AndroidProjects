@@ -1,5 +1,4 @@
 package com.example.hong_inseon.projectlouvre;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +7,14 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.RadioButton;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class JoinActivity extends AppCompatActivity {
     private EditText etEmail;
@@ -16,6 +22,15 @@ public class JoinActivity extends AppCompatActivity {
     private EditText etPasswordConfirm;
     private Button btnDone;
     private Button btnCancel;
+    private RadioButton rdBtnM;
+    private RadioButton rdBtnF;
+
+    private TextView tv_json;
+    private TextView tv_parsing;
+
+    StringBuffer sb = new StringBuffer();
+    ArrayList<String> emailList = new ArrayList<>();
+    ArrayList<String> pwList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +42,9 @@ public class JoinActivity extends AppCompatActivity {
         etPasswordConfirm = (EditText) findViewById(R.id.etPasswordConfirm);
         btnDone = (Button) findViewById(R.id.btnDone);
         btnCancel = (Button) findViewById(R.id.btnCancel);
+
+        tv_json = (TextView) findViewById(R.id.tv_json);
+        tv_parsing = (TextView) findViewById(R.id.tv_parsing);
 
         // 비밀번호 일치 검사
         etPasswordConfirm.addTextChangedListener(new TextWatcher() {
@@ -54,7 +72,7 @@ public class JoinActivity extends AppCompatActivity {
 
             }
         });
-
+/*
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +115,7 @@ public class JoinActivity extends AppCompatActivity {
                 finish();
             }
         });
+        */
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,4 +124,39 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void join_btn(View view){
+        String startJson = "[";
+        String endJson = "]";
+
+        if(!sb.toString().equals(""))
+        {
+            sb.append(",");
+        }
+
+        String temp = "{\"userid\"" + ":" + "\"" + etEmail.getText().toString() + "\"" + ","
+                + "\"pw\"" + ":" + "\"" + etPassword.getText().toString() + "\"" + "}";
+        tv_json.setText(temp);
+        tv_json.setText(startJson + sb + endJson);
+    }
+
+    public void btnTest(View view)
+    {
+        // 파싱하는 부분
+        try
+        {
+            JSONArray jsonArray = new JSONArray(tv_json.getText().toString());
+
+            for(int i=0; i<jsonArray.length(); i++)
+            {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                emailList.add(jsonObject.getString("email"));
+                pwList.add(jsonObject.getString("pw"));
+            }
+            tv_parsing.setText("" + emailList + "\n" + "" + emailList);
+        } catch(JSONException e){
+            e.printStackTrace();
+        }
+    }
+
 }

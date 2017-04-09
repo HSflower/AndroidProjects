@@ -36,8 +36,26 @@
                 android:layout_alignParentStart="true"/>
 
 
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RadioButton
+            android:text="남"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rdBtnM"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rdBtnF"
+            android:layout_weight="1"/>
+    </RadioGroup>
+
+    <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -50,7 +68,7 @@
                 android:layout_below="@id/etPassword"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:onClick="join_btn"
+                android:onClick="onClick"
                 android:textAllCaps="false"
                 android:layout_weight="1"/>
 
@@ -58,12 +76,12 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="로그인"
+                android:text="로그인*JSON변환후 서버에 보냄"
                 android:textAllCaps="false"
                 android:layout_alignBottom="@+id/btnJoin"
                 android:layout_toRightOf="@+id/btnJoin"
                 android:layout_toEndOf="@+id/btnJoin"
-                android:onClick="login_btn"
+                android:onClick="onClick"
                 android:layout_weight="1"/>
         </LinearLayout>
 
@@ -74,5 +92,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnJoin"
         android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_json"/>
+
+    <Button
+        android:text="서버에서 받아온 JSON파싱"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_to_client"
+        android:onClick="onClick"/>
+
+    <TextView
+        android:text="변환 결과값"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_parsing"/>
 
 </LinearLayout>

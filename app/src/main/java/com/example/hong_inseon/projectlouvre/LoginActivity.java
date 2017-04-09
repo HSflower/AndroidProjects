@@ -7,7 +7,6 @@ package com.example.hong_inseon.projectlouvre;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +36,12 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etPassword;
     private Button btnJoin; //sign up button
     private Button btnLogin; //login button
+
     private CheckBox autoLogin;
+
+    //StringBuffer sb = new StringBuffer();
+    //ArrayList<String> emailList = new ArrayList<>();
+    //ArrayList<String> pwList = new ArrayList<>();
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -52,24 +56,11 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnJoin = (Button) findViewById(R.id.btnJoin);
         autoLogin = (CheckBox) findViewById(R.id.autoLogin);
+        //btnJoin.setOnClickListener(myClickListener);
+        //btnLogin.setOnClickListener(myClickListener);
 
         pref = getSharedPreferences("pref", 0);
         editor = pref.edit();
-
-
-        //회원가입 버튼 누르면
-        btnJoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
-
-                // SINGLE_TOP : 이미 만들어진게 있으면 그걸 쓰고 없으면 만들어서 사용
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-                // intent를 보내면서 다음 액티비티로부터 데이터를 받기 위해 식별번호(1000)을 준다.
-                startActivityForResult(intent, 1000);
-            }
-        });
 
         //if autoLogin checked, get input
         if (pref.getBoolean("autoLogin", false)) {
@@ -78,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
             autoLogin.setChecked(true);
             // goto LoginActivity
         }
-
 
         //set checkBoxListener
         // 자동 로그인 처리
@@ -102,6 +92,59 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    Button.OnClickListener onClickListener = new Button.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btnJoin:
+                    break;
+                case R.id.btnLogin:
+                    Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+        }
+    };
+
+//    View.OnClickListener myClickListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            switch (v.getId()) {
+//                case R.id.btnJoin:
+//                    Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+//                    // SINGLE_TOP : 이미 만들어진게 있으면 그걸 쓰고 없으면 만들어서 사용
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                    // intent를 보내면서 다음 액티비티로부터 데이터를 받기 위해 식별번호(1000)을 준다.
+//                    startActivityForResult(intent, 1000);
+//
+//                    break;
+//
+//                case R.id.btnLogin:
+//                    Intent intent1 = new Intent(getApplicationContext(), ListActivity.class);
+//                    startActivity(intent1);
+//                    /*
+//                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//                    StrictMode.setThreadPolicy(policy);
+//                    String sMessage = etEmail.getText().toString();
+//                    String result = SendByHttp(sMessage);
+//                    String[][] parsedData = jsonParserList(result);
+//                    if(parsedData[0][0].equals("succed"))
+//                    {
+//                        Toast.makeText(login.this, "로그인 성공", Toast.LENGTH_LONG).show();
+//                        Intent intent = new Intent(login.this, MainActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }*/
+//
+//
+//                    break;
+//
+//                case btn_to_client:
+//                    break;
+//            }
+//        }
+//    };
+//
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,12 +160,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
+/*
     public void login_btn(View view) {
         //Toast.makeText(LoginActivity.this, "login successed", Toast.LENGTH_LONG).show();
-        //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        //ntent intent = new Intent(LoginActivity.this, MainActivity.class);
         //startActivity(intent);
         //finish();
         // 검사 추가해야 함
+
 
         // http 통신
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -139,8 +185,9 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-    }
 
+    }
+*/
     private String SendByHttp(String msg) {
         if (msg == null) {
             msg = "";
@@ -151,8 +198,8 @@ public class LoginActivity extends AppCompatActivity {
         DefaultHttpClient client = new DefaultHttpClient();
 
         try {
-            /* 체크할 id와 pw값 서버로 전송 */
-            HttpPost post = new HttpPost(URL + "?id=" + etEmail.getText().toString() + "&pw=" + etPassword.getText().toString());
+               /* 체크할 id와 pw값 서버로 전송 */
+            HttpPost post = new HttpPost(URL + "?user_email=" + etEmail.getText().toString() + "&user_pw=" + etPassword.getText().toString());
 
             /* 데이터 보낸 뒤 서버에서 데이터를 받아오는 과정 */
             HttpResponse response = client.execute(post);
@@ -171,6 +218,8 @@ public class LoginActivity extends AppCompatActivity {
             return "";
         }
     }
+
+
 
     // 받아온 데이터 파싱하는 함수
     public String[][] jsonParserList(String pRecvServerPage) {
@@ -203,10 +252,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 }
-
-
-
-
     /*
 
     //////????
