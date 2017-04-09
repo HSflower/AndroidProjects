@@ -86,8 +86,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rdBtnF"
                 android:layout_weight="1"/>
-
         </RadioGroup>
+
 
     </LinearLayout>
 
@@ -104,7 +104,7 @@
             android:layout_weight="1"/>
 
         <Button
-            android:text="확인"
+            android:text="가입"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnDone"
@@ -113,24 +113,24 @@
 
     </LinearLayout>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_json"
-        />
+    <!--<TextView-->
+        <!--android:text="TextView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/tv_json"-->
+        <!--/>-->
 
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnTest"/>
+    <!--<Button-->
+        <!--android:text="Button"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/btnTest"/>-->
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_parsing"/>
+    <!--<TextView-->
+        <!--android:text="TextView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/tv_parsing"/>-->
 
 
 </LinearLayout>

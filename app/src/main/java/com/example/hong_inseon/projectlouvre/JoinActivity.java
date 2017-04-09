@@ -42,9 +42,9 @@ public class JoinActivity extends AppCompatActivity {
         etPasswordConfirm = (EditText) findViewById(R.id.etPasswordConfirm);
         btnDone = (Button) findViewById(R.id.btnDone);
         btnCancel = (Button) findViewById(R.id.btnCancel);
-
-        tv_json = (TextView) findViewById(R.id.tv_json);
-        tv_parsing = (TextView) findViewById(R.id.tv_parsing);
+//
+//        tv_json = (TextView) findViewById(R.id.tv_json);
+//        tv_parsing = (TextView) findViewById(R.id.tv_parsing);
 
         // 비밀번호 일치 검사
         etPasswordConfirm.addTextChangedListener(new TextWatcher() {
