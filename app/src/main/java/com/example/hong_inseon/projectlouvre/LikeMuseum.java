@@ -108,7 +108,7 @@ public class LikeMuseum extends AppCompatActivity implements NavigationView.OnNa
 			/* 데이터 보낸 뒤 서버에서 데이터를 받아오는 과정 */
             HttpResponse response = client.execute(post);
             BufferedReader bufreader = new BufferedReader(
-                    new InputStreamReader(response.getEntity().getContent(), "utf-8"));
+                    new InputStreamReader(response.getEntity().getContent(), "euc-kr"));
             String line = null;
             String result = "";
             while ((line = bufreader.readLine()) != null) {

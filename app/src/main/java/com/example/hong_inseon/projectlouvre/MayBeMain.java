@@ -11,7 +11,7 @@ import android.os.Bundle;
 
 public class MayBeMain extends AppCompatActivity {
 
-    private int[] tabIcons = {R.drawable.cart, R.drawable.heart, R.drawable.profile, R.drawable.search};
+    private int[] tabIcons = {R.drawable.heart, R.drawable.clock, R.drawable.calender, R.drawable.loudspeaker};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +20,9 @@ public class MayBeMain extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.rcvr_tl_tabs);
         tabLayout.addTab(tabLayout.newTab().setText("인기전시"));
-        tabLayout.addTab(tabLayout.newTab().setText("좋아한전시"));
-        tabLayout.addTab(tabLayout.newTab().setText("게시판"));
-        tabLayout.addTab(tabLayout.newTab().setText("참여"));
+        tabLayout.addTab(tabLayout.newTab().setText("진행중전시"));
+        tabLayout.addTab(tabLayout.newTab().setText("예정전시"));
+        tabLayout.addTab(tabLayout.newTab().setText("공지사항"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);

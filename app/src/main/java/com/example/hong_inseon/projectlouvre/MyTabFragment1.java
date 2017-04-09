@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,25 +57,12 @@ public class MyTabFragment1 extends Fragment {
         mAdapter.addItem(BitmapFactory.decodeResource(getResources(), R.drawable.bazille, options),
                 "Frédéric Bazille",
                 "진행중");
-        /*
-        mAdapter.addItem(getResources().getDrawable(R.drawable.louvre, null),
-                "Lourve 모나리자",
-                "진행중");
 
-        mAdapter.addItem(getResources().getDrawable(R.drawable.orsay, null),
-                "Orsay 박물관입니다",
-                "예정");
-        */
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                //ListviewItem mItem = mAdapter.mListviewItem.get(position);
-                //Toast.makeText(ListActivity.this, mItem.mSubject, Toast.LENGTH_SHORT).show();
-
-                //Intent intent = new Intent(this, ExhibitionInfoActivity.class);
-                //startActivity(intent);
-
                 Intent intent = new Intent(view.getContext(), ExhibitionInfoActivity.class);
+                Log.v("@@@@@@", "error!!");
                 startActivity(intent);
             }
         });
