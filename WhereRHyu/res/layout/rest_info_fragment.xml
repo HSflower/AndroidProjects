@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/pager1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        tools:context="com.example.whererhyu_proto.Rest_Activity"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/viewpager_line"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="5dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Telephone"
+            android:textColor="#FCA14C"
+            android:textSize="14pt"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_marginLeft="20dip"
+                android:id="@+id/rest_info_phone_tv"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:textColor="#FCA14C"
+                android:textSize="17pt"/>
+
+            <Button
+                android:id="@+id/rest_info_phone_call_btn"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.5"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/btn_phone_call_style"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/linear_line"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="5dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Facilites"
+            android:textColor="#FCA14C"
+            android:textSize="14pt"/>
+
+        <LinearLayout
+            android:id="@+id/rest_info_fac_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
