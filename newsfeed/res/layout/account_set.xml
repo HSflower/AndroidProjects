@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp" >
+
+	<TableRow
+        
+        android:id="@+id/tableRow1"
+      >  
+        <TextView
+        android:id = "@+id/account_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="계정"
+         />
+        
+        <EditText
+            android:id="@+id/Account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="AccountName@gmail.com"
+            android:inputType="textEmailAddress"
+            android:selectAllOnFocus="true"
+            android:singleLine="true" />
+      
+   </TableRow>
+
+
+	    <TableRow
+        
+        android:id="@+id/tableRow2"
+        
+        >
+        <TextView
+            android:id = "@+id/account_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+         />
+        
+        <EditText
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            android:singleLine="true" />
+        
+    </TableRow>
+    
+	<LinearLayout 
+	   android:layout_width="match_parent"
+	   android:layout_height="wrap_content"
+	   android:orientation="horizontal"
+	   android:padding="5dp"
+	   >
+	    <Button 
+	        android:id="@+id/OK"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="Log in"
+	        />
+
+	    <Button
+	        android:id="@+id/Cancel"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="Cancel" />
+
+	</LinearLayout>
+
+
+</TableLayout>
