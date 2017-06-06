@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.union_tab"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" 
+		    android:theme="@android:style/Theme.NoTitleBar">                   
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        	<activity android:name=".Activity1"
+	    android:label="@string/app_name"
+	    android:theme="@android:style/Theme.NoTitleBar">
+	</activity>
+	<activity android:name=".Activity2"
+	    android:label="@string/app_name"
+	    android:theme="@android:style/Theme.NoTitleBar">
+	</activity>
+	<activity android:name=".Activity3"
+	    android:label="@string/app_name"
+	    android:theme="@android:style/Theme.NoTitleBar">
+	</activity>
+	<activity android:name=".lock_screen_Activity"
+	    android:label="@string/app_name"
+	    android:theme="@android:style/Theme.Translucent">
+	</activity>
+	
+	
+	<activity android:name=".WebView_ForTest"
+	    android:label="@string/app_name"
+	    android:theme="@android:style/Theme.NoTitleBar">
+	</activity>
+	
+	<activity 
+	    android:name = ".get_gmail_permission"
+	     android:label="@string/app_name"
+	    android:theme="@android:style/Theme.NoTitleBar">
+	    </activity>
+	
+	<receiver 
+	    android:name="com.example.union_tab.Lock_screenBootReceiver"
+	    android:enabled="true"
+	    android:exported="false">
+	    <intent-filter>
+	          <action android:name="android.intent.action.BOOT_COMPLETED"
+	          />
+	    </intent-filter>
+	        </receiver>
+	        
+	<service android:name="com.example.union_tab.lock_Screen_Service" 
+	       />
+	<receiver android:name="com.example.union_tab.lock_ScreenReceiver"></receiver>
+	
+	       </application>
+
+</manifest>
