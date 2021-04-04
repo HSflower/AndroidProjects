@@ -10,5 +10,7 @@
 
 ### 2. WhereRHyu(2015,교통데이터공모전)
 	● 수행인원 : 6명
+	● 사용기술 : Android(Java), 교통데이터 및 지도API
 ### 3. NewsFeed(2014, Google ADmob)
 	● 수행인원 : 4명
+	● 사용기술 : Android(Java) 
